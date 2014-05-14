@@ -33,4 +33,5 @@
     newController.$inject = ['$scope', '$log', '$window', 'urlFactory','tagFactory'];
     angular.module('MarkIt')
       .controller('newController', newController);
+
 }());

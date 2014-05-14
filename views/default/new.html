@@ -4,10 +4,37 @@
 <p>{{urls}},yep :)</p>
 <table class="table">
     <ul ng-repeat="tag in tags">
-        <li>{{tag}}</li>
+        <li>{{tag.Tag}}</li>
     </ul>
 </table> 
     <p>{{angular.fromJson(urls)}}</p>
+</div>
+<div id="tags" ng-controller='newController'>
+<style>
+.tags {
+    margin: 10px 0;
+}
+.tags .tag {
+    border-radius: 6px;
+    background-color: #EFEFEF;
+    border: 1px solid #DDD;
+    padding: 5px;
+    margin-right: 10px;
+}
+.tags .tag:hover {
+    color: red;
+    text-decoration: none;
+}
+
+input { 
+    margin-bottom: 0px !important;
+}
+</style>
+<tag-manager tags="tags"></tag-manager>
+    <h3>Selected Tags</h3>    
+    <ul>
+        <li ng-repeat="tag in tags">{{tag|selected}}</li>
+    </ul> 
 </div>
 <br />
 <br />

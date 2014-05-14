@@ -2,6 +2,7 @@ db.define_table('tag',
                 Field('Tag',notnull=True,unique=True),
                 Field('Color', widget = color_widget.widget),
                 Field('Owner',db.auth_user,default=(auth.user_id if auth.is_logged_in() else '5372e3309256a31f4fdf6bd8')),
+                #Field('Selected','boolean',default=False),
                 format='%(Tag)s')
 db.tag.Owner.readable = db.tag.Owner.writable = False
 db.tag.Tag.requires=[IS_NOT_IN_DB(db, 'tag.Tag',error_message='Dupilcated Tag'),
