@@ -39,11 +39,7 @@
   <!-- All JavaScript at the bottom, except for Modernizr which enables
        HTML5 elements & feature detects -->
   <script src="<?=URL('static','js/modernizr.custom.js')?>"></script>
-  <!-- script for angularJS -->
-  <script src="<?=URL('static','angular-1.2.2/angular.js')?>"></script>
-  <script src="<?=URL('static','ng-app.js')?>"></script>
-  <script src="<?=URL('static','ng-services/urlFactory.js')?>"></script>
-  <script src="<?=URL('static','ng-controllers/new-controller.js')?>"></script>
+
   <!-- include stylesheets -->
   <?
   response.files.insert(0,URL('static','css/web2py.css'))
@@ -169,6 +165,12 @@
   });</script>
   <?pass?>
   <script src="<?=URL('static','js/share.js',vars=dict(static=URL('static','images')))?>"></script>
+    <!-- script for angularJS -->
+  <script src="<?=URL('static','angular-1.2.2/angular.js')?>"></script>
+  <script src="<?=URL('static','ng-app.js')?>"></script>
+  <script src="<?=URL('static','ng-services/urlFactory.js')?>"></script>
+  <script src="<?=URL('static','ng-services/tagFactory.js')?>"></script>
+  <script src="<?=URL('static','ng-controllers/new-controller.js')?>"></script>
 </body>
 </html>
 

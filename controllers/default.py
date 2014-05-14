@@ -26,10 +26,6 @@ def new():
     response.delimiters = ('<?','?>')
     url_form=SQLFORM(db.url).process()
     tag_form=SQLFORM(db.tag).process()
-    if(auth.is_logged_in()):
-        username=auth.user.first_name
-    else:
-        username="guest"
     return locals()
 
 def user():

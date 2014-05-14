@@ -1,12 +1,11 @@
 <?extend 'ng-layout.html'?>
 <div ng-controller='newController'>
 <p>{{message}}, World</p>
-<p><? =username ?></p>
-<!--<p>{{urls}},yep :)</p>-->
+<p>{{urls}},yep :)</p>
 <table class="table">
-    <tr ng-repeat="url in urls">
-        <td>{{url}}</td>
-    </tr>
+    <ul ng-repeat="tag in tags">
+        <li>{{tag}}</li>
+    </ul>
 </table> 
     <p>{{angular.fromJson(urls)}}</p>
 </div>
