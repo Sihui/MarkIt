@@ -11,7 +11,7 @@
             return {
                 restrict: 'E',
                 scope: { tags: '=' },
-                 template:'<div class="tags">' +
+                template:'<div class="tags">' +
         '<span ng-repeat="(idx, tag) in tags " class="tag" ng-click="clickTag(tag)" ng-style="set_color(tag)">{{tag.Tag}}</span>' +'</div>' ,
                 link: function ( $scope, $element ) {           
 

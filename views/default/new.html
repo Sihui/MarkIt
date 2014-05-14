@@ -1,5 +1,5 @@
 <?extend 'ng-layout.html'?>
-<div ng-controller='newController'>
+<!--<div ng-controller='newController'>
 <p>{{message}}, World</p>
 <p>{{urls}},yep :)</p>
 <table class="table">
@@ -8,52 +8,7 @@
     </ul>
 </table> 
     <p>{{angular.fromJson(urls)}}</p>
-</div>
-<div id="tags" ng-controller='newController'>
-<style>
-.tags {
-    margin: 10px 0;
-}
-.tags .tag {
-    border-radius: 6px;
-    background-color: #EFEFEF;
-    border: 1px solid #DDD;
-    padding: 5px;
-    margin-right: 10px;
-}
-.tags .tag:hover {
-    color: red;
-    text-decoration: none;
-}
-
-input { 
-    margin-bottom: 0px !important;
-}
-</style>
-<tag-manager tags="tags"></tag-manager>
-    <h3>Selected Tags</h3>    
-    <ul>
-        <li ng-repeat="tag in tags">{{tag|selected}}</li>
-    </ul> 
-</div>
-<br />
-<br />
-<br/>
-<?=url_form.custom.begin?>
-<strong>Add URL</strong>&nbsp;&nbsp;Set to Private<? =url_form.custom.widget.Private ?><br/>
-<br/><strong>URL:</strong><? =url_form.custom.widget.URL ?><br/>
-<br/><strong>Title:</strong><? =url_form.custom.widget.Title ?><br/>
-<br/><strong>Note:</strong><? =url_form.custom.widget.Note ?><br/>
-
-
-<!--<br/><strong>Modified Time:</strong><? =url_form.custom.widget.Modified ?><br/>-->
-<!--<br/><strong>Visit Time:</strong><? =url_form.custom.widget.Visited ?><br/>-->
-<!--<br/><strong>Owner:</strong><? =url_form.custom.widget.Owner ?><br/>-->
-<?=url_form.custom.submit?>
-<?=url_form.custom.end?>
-<br/>
-<br/>
-
+</div>-->
 <!--Bootstrap Modal Popup-->
 <script type="text/javascript">
       $('#submit').on('click', function (e) {
@@ -87,3 +42,56 @@ input {
 <script src="<?=URL('static','js/bootstrap-modal.js')?>"></script>
 <script type="text/javascript" src="<?=URL('static','jscolor/jscolor.js')?>"></script>
 <!--End of Bootstrap Modal Popup-->
+<div id="tags" ng-controller='newController'>
+<style>
+.tags {
+    margin: 10px 0;
+}
+.tags .tag {
+    border-radius: 6px;
+    background-color: #EFEFEF;
+    border: 1px solid #DDD;
+    padding: 5px;
+    margin-right: 10px;
+}
+.tags .tag:hover {
+    color: red;
+    text-decoration: none;
+}
+
+input { 
+    margin-bottom: 0px !important;
+}
+</style>
+<tag-manager tags="tags"></tag-manager>
+    <h3>Selected Tags</h3>    
+    <ul>
+        <li ng-repeat="tag in tags">{{tag|selected}}</li>
+    </ul> 
+</div>
+<br />
+<br />
+<br/>
+<?=url_form.custom.begin?>
+<strong>Add URL</strong>&nbsp;&nbsp;Set to Private<? =url_form.custom.widget.Private ?><br/>
+<br/><strong>URL:</strong><? =url_form.custom.widget.URL ?><br/>
+<strong>Title:</strong><? =url_form.custom.widget.Title ?><br/>
+<strong>Note:</strong><? =url_form.custom.widget.Note ?><br/>
+
+
+<!--<br/><strong>Modified Time:</strong><? =url_form.custom.widget.Modified ?><br/>-->
+<!--<br/><strong>Visit Time:</strong><? =url_form.custom.widget.Visited ?><br/>-->
+<!--<br/><strong>Owner:</strong><? =url_form.custom.widget.Owner ?><br/>-->
+<button id="urlSubmitBtn" ><?=url_form.custom.submit?></button>
+<!--<button onclick="clickSubmitBtn()">JS Button</button>-->
+<?=url_form.custom.end?>
+<?=url_tag_form?>
+<br/>
+<br/>
+
+<script type="text/javascript">
+function clickSubmitBtn(){  
+    document.getElementById('urlSubmitBtn').click()
+    //document.write("<?=url_form.custom.submit?>") style="visibility:hidden;"
+    }    
+</script>

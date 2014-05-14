@@ -26,6 +26,7 @@ def new():
     response.delimiters = ('<?','?>')
     url_form=SQLFORM(db.url).process()
     tag_form=SQLFORM(db.tag).process()
+    url_tag_form=SQLFORM(db.url_tag).process()
     return locals()
 
 def user():

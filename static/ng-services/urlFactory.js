@@ -6,7 +6,7 @@
         var factory = {};
         
         factory.getUrls = function(){
-            return $http.get('https://beta-api.mongohq.com/mongo/530ce7bd23ff0a6078000074/MarkIt/collections/url/documents');
+            return $http.get('https://beta-api.mongohq.com/mongo/530ce7bd23ff0a6078000074/MarkIt/collections/url/documents?limit=100');
         }
         
         return factory;

@@ -3,7 +3,7 @@ import re
 db.define_table('url',
                 Field('Modified','datetime',default=request.now),
                 Field('Visited', 'datetime', default=request.now),
-                Field('Owner',db.auth_user,default=(auth.user_id if auth.is_logged_in() else '5372e3309256a31f4fdf6bd8')),
+                Field('Owner',db.auth_user,default=(auth.user_id if auth.is_logged_in() else long('537372c49256a31f4fdf6be5',16))),
                 Field('Title','string',notnull=True),
                 Field('URL',notnull=True,unique=True),
                 Field('Note','text',default=""),
