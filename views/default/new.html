@@ -1,0 +1,63 @@
+<?extend 'ng-layout.html'?>
+<div ng-controller='newController'>
+<p>{{message}}, World</p>
+<p><? =username ?></p>
+<!--<p>{{urls}},yep :)</p>-->
+<table class="table">
+    <tr ng-repeat="url in urls">
+        <td>{{url}}</td>
+    </tr>
+</table> 
+    <p>{{angular.fromJson(urls)}}</p>
+</div>
+<br />
+<br />
+<br/>
+<?=url_form.custom.begin?>
+<strong>Add URL</strong>&nbsp;&nbsp;Set to Private<? =url_form.custom.widget.Private ?><br/>
+<br/><strong>URL:</strong><? =url_form.custom.widget.URL ?><br/>
+<br/><strong>Title:</strong><? =url_form.custom.widget.Title ?><br/>
+<br/><strong>Note:</strong><? =url_form.custom.widget.Note ?><br/>
+
+
+<!--<br/><strong>Modified Time:</strong><? =url_form.custom.widget.Modified ?><br/>-->
+<!--<br/><strong>Visit Time:</strong><? =url_form.custom.widget.Visited ?><br/>-->
+<!--<br/><strong>Owner:</strong><? =url_form.custom.widget.Owner ?><br/>-->
+<?=url_form.custom.submit?>
+<?=url_form.custom.end?>
+<br/>
+<br/>
+
+<!--Bootstrap Modal Popup-->
+<script type="text/javascript">
+      $('#submit').on('click', function (e) {
+
+     <?=tag_form.custom.submit?>
+
+})
+</script>
+<div class="container">  
+<div id="example" class="modal hide fade in" style="display: none; ">  
+<div class="modal-header">  
+<a class="close" data-dismiss="modal">×</a>  
+<h5>New Tag</h5>  
+</div>  
+<div class="modal-body">    
+<?=tag_form.custom.begin?>
+    <table>
+<tr><th><strong>Tag Name:</strong></th><th><? =tag_form.custom.widget.Tag?></th></tr>
+<tr><th><strong>Color</strong></th><th><? =tag_form.custom.widget.Color?></th></tr>
+<!--<tr><th><strong>Owner:</strong></th><th><? =tag_form.custom.widget.Owner ?></th></tr>-->
+     </table>  
+</div>  
+<div class="modal-footer">  
+<?=tag_form.custom.submit?> 
+ <?=tag_form.custom.end?>   
+</div>  
+</div>  
+  
+<p><a data-toggle="modal" href="#example" class="btn btn-primary btn-small">New Tag</a></p>  
+</div>  
+<script src="<?=URL('static','js/bootstrap-modal.js')?>"></script>
+<script type="text/javascript" src="<?=URL('static','jscolor/jscolor.js')?>"></script>
+<!--End of Bootstrap Modal Popup-->
