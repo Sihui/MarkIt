@@ -10,13 +10,6 @@
     <p>{{angular.fromJson(urls)}}</p>
 </div>-->
 <!--Bootstrap Modal Popup-->
-<script type="text/javascript">
-      $('#submit').on('click', function (e) {
-
-     <?=tag_form.custom.submit?>
-
-})
-</script>
 <div class="container">  
 <div id="example" class="modal hide fade in" style="display: none; ">  
 <div class="modal-header">  
@@ -29,20 +22,23 @@
 <tr><th><strong>Tag Name:</strong></th><th><? =tag_form.custom.widget.Tag?></th></tr>
 <tr><th><strong>Color</strong></th><th><? =tag_form.custom.widget.Color?></th></tr>
 <!--<tr><th><strong>Owner:</strong></th><th><? =tag_form.custom.widget.Owner ?></th></tr>-->
-     </table>  
+    </table>  
 </div>  
 <div class="modal-footer">  
-<?=tag_form.custom.submit?> 
- <?=tag_form.custom.end?>   
+<?=tag_form.custom.submit?>
+<?=tag_form.custom.end?>   
 </div>  
-</div>  
-  
+</div>
 <p><a data-toggle="modal" href="#example" class="btn btn-primary btn-small">New Tag</a></p>  
-</div>  
+</div>
 <script src="<?=URL('static','js/bootstrap-modal.js')?>"></script>
 <script type="text/javascript" src="<?=URL('static','jscolor/jscolor.js')?>"></script>
 <!--End of Bootstrap Modal Popup-->
-<div id="tags" ng-controller='newController'>
+<!--<div ng-controller='newController' id="tagDiv">
+<button  ng-click="getSelectedTags()">JS Button2</button>
+     
+</div>--> 
+<div id="tags" ng-controller="newController">
 <style>
 .tags {
     margin: 10px 0;
@@ -65,9 +61,14 @@ input {
 </style>
 <tag-manager tags="tags"></tag-manager>
     <h3>Selected Tags</h3>    
-    <ul>
-        <li ng-repeat="tag in tags">{{tag|selected}}</li>
+    <ul ng-repeat="tag in tags">
+        {{tag|selected}}
     </ul> 
+    <h3>Sotred Tags</h3>
+    <ul>
+    <li ng-repeat="t in selectedTags">{{t}}</li>    
+    </ul>
+    <button ng-click="submitTag_urls(selectedTags)">test</button>
 </div>
 <br />
 <br />
@@ -83,15 +84,14 @@ input {
 <!--<br/><strong>Visit Time:</strong><? =url_form.custom.widget.Visited ?><br/>-->
 <!--<br/><strong>Owner:</strong><? =url_form.custom.widget.Owner ?><br/>-->
 <button id="urlSubmitBtn" ><?=url_form.custom.submit?></button>
-<!--<button onclick="clickSubmitBtn()">JS Button</button>-->
+<button onclick="clickSubmitBtn()" ng-click="getSelectedTags()">JS Button</button>
+
 <?=url_form.custom.end?>
 <?=url_tag_form?>
-<br/>
-<br/>
 
 <script type="text/javascript">
 function clickSubmitBtn(){  
-    document.getElementById('urlSubmitBtn').click()
+    //document.getElementById('urlSubmitBtn').click()
     //document.write("<?=url_form.custom.submit?>") style="visibility:hidden;"
     }    
 </script>

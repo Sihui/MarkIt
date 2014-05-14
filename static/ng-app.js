@@ -21,12 +21,11 @@
                         else
                             return { color: tag.Color}
                     }
-            
+                    $scope.new_selectedTags=[];
                     $scope.clickTag = function(tag){
-                        if(tag.Selected)
-                            tag.Selected=false;
-                        else
-                            tag.Selected=true;
+                            tag.Selected=!tag.Selected;
+                            //getSelectedTags
+                        angular.element(document.getElementById("tags")).scope().getSelectedTags(tag);
                     };
         }
     };
