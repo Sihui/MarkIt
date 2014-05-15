@@ -78,20 +78,28 @@ input {
 <br/><strong>URL:</strong><? =url_form.custom.widget.URL ?><br/>
 <strong>Title:</strong><? =url_form.custom.widget.Title ?><br/>
 <strong>Note:</strong><? =url_form.custom.widget.Note ?><br/>
-
-
-<!--<br/><strong>Modified Time:</strong><? =url_form.custom.widget.Modified ?><br/>-->
-<!--<br/><strong>Visit Time:</strong><? =url_form.custom.widget.Visited ?><br/>-->
-<!--<br/><strong>Owner:</strong><? =url_form.custom.widget.Owner ?><br/>-->
 <button id="urlSubmitBtn" ><?=url_form.custom.submit?></button>
-<button onclick="clickSubmitBtn()" ng-click="getSelectedTags()">JS Button</button>
-
 <?=url_form.custom.end?>
-<?=url_tag_form?>
+
+<div>
+    <?=urlTag_form.custom.begin?>   
+    <br/>URL:<?=urlTag_form.custom.widget.URL?>
+    <br/>Tag:<?=urlTag_form.custom.widget.Tag?>
+    <button id="url_tag_btn"><?=urlTag_form.custom.submit?></button>
+    <?=urlTag_form.custom.end?>
+</div>
+
+<button onclick="clickSubmitBtn()">JS Button</button>
+
 
 <script type="text/javascript">
 function clickSubmitBtn(){  
     //document.getElementById('urlSubmitBtn').click()
     //document.write("<?=url_form.custom.submit?>") style="visibility:hidden;"
+    document.getElementById('url_tag_URL').value="www.google.com";
+    document.getElementById('url_tag_Tag').value="CS";
+    document.getElementById('url_tag_btn').click();
+    //return true;
+    
     }    
 </script>
