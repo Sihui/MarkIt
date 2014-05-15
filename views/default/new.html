@@ -1,61 +1,36 @@
 <?extend 'ng-layout.html'?>
-<!--<div ng-controller='newController'>
-<p>{{message}}, World</p>
-<p>{{urls}},yep :)</p>
-<table class="table">
-    <ul ng-repeat="tag in tags">
-        <li>{{tag.Tag}}</li>
-    </ul>
-</table> 
-    <p>{{angular.fromJson(urls)}}</p>
-</div>-->
 
 <!--Bootstrap Modal Popup-->
-<div class="container">
-  <div id="example" class="modal hide fade in" style="display: none; ">    
-    <div class="modal-header">    
-      <a class="close" data-dismiss="modal">×</a>
-      <h5>New Tag</h5>
-    </div>
-    <div class="modal-body">
-      <?=tag_form.custom.begin?>
-      <table>
-        <tr><th><strong>Tag Name:</strong></th>
-            <th><? =tag_form.custom.widget.Tag?></th>
-        </tr>
-        <tr><th><strong>Color</strong></th>
-          <th><? =tag_form.custom.widget.Color?></th>
-        </tr>
-      </table>
-    </div>
-    <div class="modal-footer">
-      <?=tag_form.custom.submit?>
-      <?=tag_form.custom.end?>
-    </div>
-  </div>
-  <a data-toggle="modal" href="#example" class="btn btn-primary btn-small">New Tag</a>
+<div class="container">  
+<div id="example" class="modal hide fade in" style="display: none; ">  
+<div class="modal-header">  
+<a class="close" data-dismiss="modal">×</a>  
+<h5>New Tag</h5>  
+</div>  
+<div class="modal-body">    
+<?=tag_form.custom.begin?>
+<table>
+<tr><th><strong>Tag Name:</strong></th><th><? =tag_form.custom.widget.Tag?></th></tr>
+<tr><th><strong>Color</strong></th><th><? =tag_form.custom.widget.Color?></th></tr>
+</table>  
+</div>  
+<div class="modal-footer">  
+<?=tag_form.custom.submit?>
+<?=tag_form.custom.end?>   
+</div>  
+</div>
+<a data-toggle="modal" href="#example" class="btn btn-primary btn-small">New Tag</a>
 </div>
 <script src="<?=URL('static','js/bootstrap-modal.js')?>"></script>
 <script type="text/javascript" src="<?=URL('static','jscolor/jscolor.js')?>"></script>
 <!--End of Bootstrap Modal Popup-->
 <script type="text/javascript">
-//function newController($scope){
-    
 
-//}    
-//function clickSubmitBtn(tags){  
-    //alert(tags);
-    //document.getElementById('urlSubmitBtn').click();
-    //var murl=document.getElementById('url_URL').value;
-    //tags.forEach(function(tag){
-    //    submitUrlTagForm(tag,murl);
-    //});
-  //  }
-//function submitUrlTagForm(t,u){
-  //  document.getElementById('url_tag_URL').value=u;
-    //document.getElementById('url_tag_Tag').value=t;
-    //document.getElementById('url_tag_btn').click();
-//}    
+function submitUrlTagForm(t,u){
+    document.getElementById('url_tag_URL').value=u;
+    document.getElementById('url_tag_Tag').value=t;
+    document.getElementById('url_tag_btn').click();
+}    
 </script>
 <div id="tags" ng-controller="newController">
 
@@ -73,36 +48,15 @@
 <br />
 <br />
 <br/>
-<!--
 <?=url_form.custom.begin?>
 <strong>Add URL</strong>&nbsp;&nbsp;Set to Private<? =url_form.custom.widget.Private ?><br/>
 <br/><strong>URL:</strong><? =url_form.custom.widget.URL ?><br/>
 <strong>Title:</strong><? =url_form.custom.widget.Title ?><br/>
 <strong>Note:</strong><? =url_form.custom.widget.Note ?><br/>
+<div ><? =url_form.custom.widget.Tags ?></div>
 <button id="urlSubmitBtn" ><?=url_form.custom.submit?></button>
-<?=url_form.custom.end?>-->
-<!--url_form-->
-<form  action="#" enctype="multipart/form-data" method="post">
-  <strong>Add URL</strong>
-   &nbsp;&nbsp;Set to Private
-  <input class="boolean" id="url_Private" name="Private" type="checkbox" value="on" />
-  <br/><br/>
-  <strong>URL:</strong>
-  <input class="string" id="url_URL" name="URL" type="text" value="" />
-  <br/>
-  <strong>Title:</strong>
-  <input class="string" id="url_Title" name="Title" type="text" value="" />
-  <br/>
-  <strong>Note:</strong>
-  <textarea class="text" cols="40" id="url_Note" name="Note" rows="10"></textarea>
-  <br/>
-  <button id="urlSubmitBtn" ><input type="submit" value="Submit" /></button>
-  <div style="display:none;">
-    <input name="_formkey" type="hidden" value="9707c2e9-e36a-4c39-a558-d17152666d52" />
-    <input name="_formname" type="hidden" value="url/create" />
-  </div>
-</form>
-<!--END OF url_form-->
+<?=url_form.custom.end?>
+
 <div style="Visibility:hidden">
     <?=urlTag_form.custom.begin?>   
     <br/>URL:<?=urlTag_form.custom.widget.URL?>
@@ -110,4 +64,3 @@
     <button id="url_tag_btn"><?=urlTag_form.custom.submit?></button>
     <?=urlTag_form.custom.end?>
 </div>
-

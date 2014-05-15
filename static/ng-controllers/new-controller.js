@@ -6,6 +6,7 @@
         $scope.urls = [];
         $scope.tags = [];
         $scope.selectedTags = [];
+        $scope.selectedTagsTags = [];
         function init() {
             urlFactory.getUrls()
                 .success(function(data, status, headers, config) {
@@ -35,12 +36,14 @@
             if(inputTag.Selected){
                 //add it
                  $log.log('add tag');
+                $scope.selectedTagsTags.push(inputTag.Tag);
                 $scope.selectedTags.push(inputTag);
             }else{
                 //remove it
                 var index = $scope.selectedTags.indexOf(inputTag);
                 if ( index > -1) {
                      $scope.selectedTags.splice(index, 1);
+                     $scope.selectedTagsTags.splice(index, 1);
                     $log.log('remove tag');
                 }
             }
@@ -59,15 +62,15 @@
         //};
         $scope.clickSubmitBtn=function(){
             $log.log("btnf");
-            angular.forEach($scope.selectedTags,function(tag, index){
-                    $log.log(tag.Tag);
+           // angular.forEach($scope.selectedTags,function(tag, index){
+             //       $log.log(tag.Tag);
                 //angular.element(document.getElementById("url_tag_URL")).scope().getSelectedTags(tag);
                     //function submitUrlTagForm(t,u){
-  document.getElementById('url_tag_URL').value="www.baidu.com";
-    document.getElementById('url_tag_Tag').value=tag.Tag;
-    document.getElementById('url_tag_btn').click();
-//}  
-                });
+  document.getElementById('url_Tags').value=$scope.selectedTagsTags;
+    //document.getElementById('url_tag_Tag').value=tag.Tag;
+    document.getElementById('urlSubmitBtn').click();
+//}  url_Tags
+          //      });
         };
     };
     
