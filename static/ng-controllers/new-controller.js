@@ -61,6 +61,12 @@
             $log.log("btnf");
             angular.forEach($scope.selectedTags,function(tag, index){
                     $log.log(tag.Tag);
+                //angular.element(document.getElementById("url_tag_URL")).scope().getSelectedTags(tag);
+                    //function submitUrlTagForm(t,u){
+  document.getElementById('url_tag_URL').value="www.baidu.com";
+    document.getElementById('url_tag_Tag').value=tag.Tag;
+    document.getElementById('url_tag_btn').click();
+//}  
                 });
         };
     };
