@@ -24,38 +24,35 @@
 <script src="<?=URL('static','js/bootstrap-modal.js')?>"></script>
 <script type="text/javascript" src="<?=URL('static','jscolor/jscolor.js')?>"></script>
 <!--End of Bootstrap Modal Popup-->
-<script type="text/javascript">
 
-function submitUrlTagForm(t,u){
-    document.getElementById('url_tag_URL').value=u;
-    document.getElementById('url_tag_Tag').value=t;
-    document.getElementById('url_tag_btn').click();
-}    
-</script>
 <div id="tags" ng-controller="newController">
 
 <tag-manager tags="tags"></tag-manager>
-    <h3>Selected Tags</h3>    
+    <!--<h3>Selected Tags</h3>    
     <ul ng-repeat="tag in tags">
         {{tag|selected}}
     </ul> 
     <h3>Sotred Tags</h3>
     <ul>
     <li ng-repeat="t in selectedTags">{{t}}</li>    
-    </ul>
-    <button ng-click="clickSubmitBtn()">JS Button</button>
-</div>
+    </ul>-->
+    
+
 <br />
 <br />
 <br/>
 <?=url_form.custom.begin?>
+<table>
 <strong>Add URL</strong>&nbsp;&nbsp;Set to Private<? =url_form.custom.widget.Private ?><br/>
 <br/><strong>URL:</strong><? =url_form.custom.widget.URL ?><br/>
 <strong>Title:</strong><? =url_form.custom.widget.Title ?><br/>
 <strong>Note:</strong><? =url_form.custom.widget.Note ?><br/>
-<div ><? =url_form.custom.widget.Tags ?></div>
-<button id="urlSubmitBtn" ><?=url_form.custom.submit?></button>
-<?=url_form.custom.end?>
+<button ng-click="clickSubmitBtn()">Submit</button>    
+<div style="Visibility:hidden"><? =url_form.custom.widget.Tags ?></div>
+<button id="urlSubmitBtn" style="Visibility:hidden"><?=url_form.custom.submit?></button>
+</table>
+<?=url_form.custom.end?> 
+</div>
 
 <div style="Visibility:hidden">
     <?=urlTag_form.custom.begin?>   

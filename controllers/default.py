@@ -21,12 +21,35 @@ def index():
     #db.url_folder.insert(url=1, folder= 1)
     response.flash = T("Welcome to web2py!")
     return dict(message=T('Hello World'))
-
+def afterVal(form):
+    print "after"
+    print form.vars.id
+    
 def new():
     response.delimiters = ('<?','?>')
     url_form=SQLFORM(db.url).process()
     tag_form=SQLFORM(db.tag).process()
     urlTag_form=SQLFORM(db.url_tag).process()
+    if url_form.accepted:
+        #print 'record inserted'
+        record = db.url(url_form.vars.id)
+        url = record.URL
+        #print url
+        #convert the list to string then split it to list
+        tagList = ''.join(record.Tags).split(',')
+        for tag in tagList:
+            tagRecord = db(db.tag.Tag==tag).select()[0]
+            tagRecord.URLs.append(record)
+            print "list start"
+            print tagRecord.URLs
+            print "end"
+            tagRecord.update_record(URLs=tagRecord.URLs)
+            #print newURLs
+        #print url.Tags[0]
+        response.flash = 'form accepted'
+    else:
+        response.flash =  'e'
+        print urlTag_form.vars.id
     return locals()
 
 def user():
