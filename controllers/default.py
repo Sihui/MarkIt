@@ -37,13 +37,17 @@ def new():
         #print url
         #convert the list to string then split it to list
         tagList = ''.join(record.Tags).split(',')
+        
         for tag in tagList:
-            tagRecord = db(db.tag.Tag==tag).select()[0]
-            tagRecord.URLs.append(record)
-            print "list start"
-            print tagRecord.URLs
-            print "end"
-            tagRecord.update_record(URLs=tagRecord.URLs)
+            #if user selected tags
+            if len(db(db.tag.Tag==tag).select()) is not 0:
+                tagRecord = db(db.tag.Tag==tag).select()[0]
+                tagRecord.URLs.append(record)
+                print "list start"
+                print tagRecord.URLs
+                print "end"
+                tagRecord.update_record(URLs=tagRecord.URLs)
+                tagRecord.update_record(Size=1 if tagRecord.Size is None else (tagRecord.Size+1))
             #print newURLs
         #print url.Tags[0]
         response.flash = 'form accepted'
