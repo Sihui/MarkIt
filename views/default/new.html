@@ -18,47 +18,42 @@
 </div>  
 <div class="modal-body">    
 <?=tag_form.custom.begin?>
-    <table>
+<table>
 <tr><th><strong>Tag Name:</strong></th><th><? =tag_form.custom.widget.Tag?></th></tr>
 <tr><th><strong>Color</strong></th><th><? =tag_form.custom.widget.Color?></th></tr>
-<!--<tr><th><strong>Owner:</strong></th><th><? =tag_form.custom.widget.Owner ?></th></tr>-->
-    </table>  
+</table>  
 </div>  
 <div class="modal-footer">  
 <?=tag_form.custom.submit?>
 <?=tag_form.custom.end?>   
 </div>  
 </div>
-<p><a data-toggle="modal" href="#example" class="btn btn-primary btn-small">New Tag</a></p>  
+<a data-toggle="modal" href="#example" class="btn btn-primary btn-small">New Tag</a>
 </div>
 <script src="<?=URL('static','js/bootstrap-modal.js')?>"></script>
 <script type="text/javascript" src="<?=URL('static','jscolor/jscolor.js')?>"></script>
 <!--End of Bootstrap Modal Popup-->
-<!--<div ng-controller='newController' id="tagDiv">
-<button  ng-click="getSelectedTags()">JS Button2</button>
-     
-</div>--> 
-<div id="tags" ng-controller="newController">
-<style>
-.tags {
-    margin: 10px 0;
-}
-.tags .tag {
-    border-radius: 6px;
-    background-color: #EFEFEF;
-    border: 1px solid #DDD;
-    padding: 5px;
-    margin-right: 10px;
-}
-.tags .tag:hover {
-    color: red;
-    text-decoration: none;
-}
+<script type="text/javascript">
+//function newController($scope){
+    
 
-input { 
-    margin-bottom: 0px !important;
-}
-</style>
+//}    
+//function clickSubmitBtn(tags){  
+    //alert(tags);
+    //document.getElementById('urlSubmitBtn').click();
+    //var murl=document.getElementById('url_URL').value;
+    //tags.forEach(function(tag){
+    //    submitUrlTagForm(tag,murl);
+    //});
+  //  }
+function submitUrlTagForm(t,u){
+    document.getElementById('url_tag_URL').value=u;
+    document.getElementById('url_tag_Tag').value=t;
+    document.getElementById('url_tag_btn').click();
+}    
+</script>
+<div id="tags" ng-controller="newController">
+
 <tag-manager tags="tags"></tag-manager>
     <h3>Selected Tags</h3>    
     <ul ng-repeat="tag in tags">
@@ -68,7 +63,7 @@ input {
     <ul>
     <li ng-repeat="t in selectedTags">{{t}}</li>    
     </ul>
-    <button ng-click="submitTag_urls(selectedTags)">test</button>
+    <button ng-click="clickSubmitBtn()">JS Button</button>
 </div>
 <br />
 <br />
@@ -81,7 +76,7 @@ input {
 <button id="urlSubmitBtn" ><?=url_form.custom.submit?></button>
 <?=url_form.custom.end?>
 
-<div>
+<div style="Visibility:hidden">
     <?=urlTag_form.custom.begin?>   
     <br/>URL:<?=urlTag_form.custom.widget.URL?>
     <br/>Tag:<?=urlTag_form.custom.widget.Tag?>
@@ -89,17 +84,3 @@ input {
     <?=urlTag_form.custom.end?>
 </div>
 
-<button onclick="clickSubmitBtn()">JS Button</button>
-
-
-<script type="text/javascript">
-function clickSubmitBtn(){  
-    //document.getElementById('urlSubmitBtn').click()
-    //document.write("<?=url_form.custom.submit?>") style="visibility:hidden;"
-    document.getElementById('url_tag_URL').value="www.google.com";
-    document.getElementById('url_tag_Tag').value="CS";
-    document.getElementById('url_tag_btn').click();
-    //return true;
-    
-    }    
-</script>

@@ -46,15 +46,21 @@
             }
         };
         
-        $scope.submitTag_urls = function(tags){
-            url_tagFactory.sendUrlTag(tags)
-                .success(function(data, status, headers, config) {
-                    $scope.urls = data;
-                    $log.log('url_tagFactorySuccess');
-                })
-                .error(function(data, status, headers, config) {
-                    $log.log(data.error + ' ' + status);
-                    $log.log('url_tagFactoryError: status= '+status+" headers="+headers+" config");
+       // $scope.submitTag_urls = function(tags){
+         //   url_tagFactory.sendUrlTag(tags)
+           //     .success(function(data, status, headers, config) {
+             //       $scope.urls = data;
+               //     $log.log('url_tagFactorySuccess');
+        //        })
+          //      .error(function(data, status, headers, config) {
+            //        $log.log(data.error + ' ' + status);
+              //      $log.log('url_tagFactoryError: status= '+status+" headers="+headers+" config");
+                //});
+        //};
+        $scope.clickSubmitBtn=function(){
+            $log.log("btnf");
+            angular.forEach($scope.selectedTags,function(tag, index){
+                    $log.log(tag.Tag);
                 });
         };
     };
