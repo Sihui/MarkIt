@@ -17,5 +17,3 @@
     angular.module('MarkIt').factory('tagFactory',tagFactory);
 
 }());
-//
-//

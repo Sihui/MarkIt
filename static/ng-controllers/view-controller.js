@@ -41,6 +41,10 @@
                                             });
                                         })*/
                                     }
+                            if(url.Colors!=null&&url.Colors!=0){
+                                url.Colors = url.Colors.join(',').split(',');
+                                $log.log(url.Colors);
+                                        }
                                 })
                         })
                 .error(function(data, status, headers, config) {

@@ -44,6 +44,8 @@ input {
 .card .card-heading.simple {
   font-size: 20px;
   font-weight: 300;
+  padding-bottom: 5px;
+  padding-left: 10px;
   color: #777;
   border-bottom: 1px solid #e5e5e5;
 }

@@ -35,23 +35,13 @@
             return {
                 restrict: 'E',
                 scope: { url: '='},
-                template:'<div class="card">'+'<div class="card-heading simple">'+'<a href="//{{url.URL}}" target="_blank">{{url.Title}}</a></div>'+'<div class="card-body"><p>{{url.Note}}</p></div>'+'<div class="card-actions">'+'<tagSection ng-repeat="tag in url.Tags"  class="tag" ng-style="get_tag_color(tag)">{{tag}}</tagSection>'+'</div></div>',
+                template:'<div class="card">'+'<div class="card-heading simple">'+'<a href="//{{url.URL}}" target="_blank">{{url.Title}}</a></div>'+'<div class="card-body"><p>{{url.Note}}</p></div>'+'<div class="card-actions">'+'<tagSection ng-repeat="(i,tag) in url.Tags"  class="tag" ng-style="set_color(url.Colors[i])">{{tag}}</tagSection>'+'</div></div>',
 /*'<div class="card">'+'<div class="card-heading simple">'+'<a href="//" target="_blank">{{url.Title}}</a></div>'+'<div class="card-body"><p>{{url.Note}}</p></div>'+'<div class="card-actions">'+'<span ng-repeat="(idx, tag) in url.Tags " class="tag" ng-style="getTagColor(tag)">{{tag}}</span>'+'</div></div>'*/
                 link: function ( $scope, $element ) {
-                    
-                               /*$scope.getTagColor = function(tagName){
-                        $log.log('getTagColor');
-
-                        $scope.tagColor="#000000";//default color
-                        $scope.tags.forEach(function(tag){
-                                            if(tag.Tag==tagName)                
-                                                $scope.tagColor=tag.Color;
-                                                 $log.log($scope.tagColor);
-                                            });
-
-                        return { color: $scope.tagColor}
-
-                    };*/
+                     $scope.set_color = function (c) {
+                         
+                            return { color: c}
+                    }
                 }
             };
         });
