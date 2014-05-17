@@ -35,11 +35,10 @@
             return {
                 restrict: 'E',
                 scope: { url: '='},
-                template:'<div class="card">'+'<div class="card-heading simple">'+'<a href="//{{url.URL}}" target="_blank">{{url.Title}}</a></div>'+'<div class="card-body"><p>{{url.Note}}</p></div>'+'<div class="card-actions">'+'<tagSection ng-repeat="(i,tag) in url.Tags"  class="tag" ng-style="set_color(url.Colors[i])">{{tag}}</tagSection>'+'</div></div>',
-/*'<div class="card">'+'<div class="card-heading simple">'+'<a href="//" target="_blank">{{url.Title}}</a></div>'+'<div class="card-body"><p>{{url.Note}}</p></div>'+'<div class="card-actions">'+'<span ng-repeat="(idx, tag) in url.Tags " class="tag" ng-style="getTagColor(tag)">{{tag}}</span>'+'</div></div>'*/
+                template:'<div class="card">'+'<div class="card-heading simple">'+'<a href="//{{url.URL}}" target="_blank">{{url.Title}}</a></div>'+'<div class="card-body"><p>{{url.Note}}</p></div>'+'<div class="card-actions">'+'<tagSection ng-repeat="(i,tag) in url.Tags"  class="tag"  ng-style="set_color(url.Colors[i])">{{tag}}</tagSection>'+'</div></div>',
                 link: function ( $scope, $element ) {
                      $scope.set_color = function (c) {
-                         
+                         //style="background-color: \'#EFEFEF\'"
                             return { color: c}
                     }
                 }
