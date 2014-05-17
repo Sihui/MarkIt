@@ -23,7 +23,12 @@ input {
   margin: 10px 5px 20px 5px;
   background-color: #ffffff;
   border: 1px solid #d8d8d8;
+<<<<<<< HEAD
   float:left;
+=======
+   float:left;
+  /*border-top-width: 0;*/
+>>>>>>> 2157b220912332ad18c4f75ee00ddac1c2e524fc
   border-bottom-width: 2px;
   -webkit-border-radius: 3px;
      -moz-border-radius: 3px;
@@ -291,7 +296,8 @@ input {
 }
 tagSection {
     padding: 3px 3px 3px 3px;
-    display:inline;}
+    display:inline;
+}
 .tag {
     margin-right: 5px;
     margin-left: 5px;
