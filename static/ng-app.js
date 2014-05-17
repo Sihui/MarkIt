@@ -43,27 +43,111 @@
                 }
             };
         });
-    app.directive('directedforcedGraph',function(){
-            function getLinks(scope,element,attr,filter,log){
+    app.directive('directedforcedGraph',['$filter','$log',function($filter,$log){
+             /*function createLink (s,t,v){
+                  return {source: s,
+                        target: t,
+                         value:v};
+                };*/
+        
+            /*function getLinks(scope,element,filter){
                     scope.links = [];
-                    angular.forEach(tags, function(tag,index){
+                    angular.forEach(tags, function(tag){
                         if(tag.Friends!=0){
                             //convert the json list into javascript array
                             tag.Friends = tag.Friends.join(',').split(',');
                             var fList = $filter('orderBy')(tag.Friends, string);
-                            log.log('fList');
-                            log.log(fList);
-                            }
-                        })
-                }
+                            if(fList.length==1){//
+                                scope.links.push(createLink(tags.indexOf(tag),tags.indexOf(fList[0]),1));
+                            }else{  
+                                for(var i=0;i<fList.length-2;i++){
+                                    var value=1;
+                                    while(i+1<(fList.length-1)&&fList[i]==fList[i+1]){
+                                        value++;
+                                        i++;
+                                    }
+                                    //last element
+                                    if(i+1==(fList.length-1)){
+                                        //determine last element
+                                        if(fList[i]==fList[i+1]){
+                                        value++;
+                                        scope.links.push(createLink(tags.indexOf(tag),tags.indexOf(fList[i]),value));    
+                                        }else{
+                                        scope.links.push(createLink(tags.indexOf(tag),tags.indexOf(fList[i]),value));  
+                                        scope.links.push(createLink(tags.indexOf(tag),tags.indexOf(fList[i+1]),1));
+                                        }
+                                    }
+                                    //current element isn't the second last one
+                                    else{
+                                        scope.links.push(createLink(tags.indexOf(tag),tags,indexOf(fList[i]),value));        
+                                    }
+                                }
+                            } //                        
+                        }
+                    });
+                    return angular.toJson(scope.links);
+                }*/
             return {
                 restrict: 'E',
                 scope: { tags: '='},
-                template:'<p>P</p>',
-                link: getLinks
-            };
+                template:'<p ng-style="getLinks(tags)"></p>',
+                link: function ( $scope, $element){
+                             function createLink (s,t,v){
+                                $log.log("cl");
+                                                    return {source: s,
+                                                            target: t,
+                                                             value:v};
+                                                };
+                            
+                            $scope.getLinks = function(tags){
+                                        $scope.links = [];
+                                        angular.forEach(tags, function(tag){
+                                            if(tag.Friends!=0){
+                                                //convert the json list into javascript array
+                                                tag.Friends = tag.Friends.join(',').split(',');
+                                                //$log.log(tag.Friends);
+                                                var fList = tag.Friends.sort();
+                                                $log.log(tag.Friends);
+                                                if(fList.length==1){//
+                                                    $scope.links.push(createLink(tags.indexOf(tag),tags.indexOf(fList[0]),1));
+                                                }else{  
+                                                    for(var i=0;i<fList.length-2;i++){
+                                                        var value=1;
+                                                        while(i+1<(fList.length-1)&&fList[i]==fList[i+1]){
+                                                            value++;
+                                                            i++;
+                                                        }
+                                                        //last element
+                                                        if(i+1==(fList.length-1)){
+                                                            //determine last element
+                                                            if(fList[i]==fList[i+1]){
+                                                            value++;
+                                                                $log.log("push 1");
+                                                            $scope.links.push(createLink(tags.indexOf(tag),tags.indexOf(fList[i]),value));    
+                                                            }else{
+                                                                $log.log("push 2");
+                                                            $scope.links.push(createLink(tags.indexOf(tag),tags.indexOf(fList[i]),value));  
+                                                            $scope.links.push(createLink(tags.indexOf(tag),tags.indexOf(fList[i+1]),1));
+                                                            }
+                                                        }
+                                                        //current element isn't the second last one
+                                                        else{
+                                                            $log.log("push 3");
+                                                            $scope.links.push(createLink(tags.indexOf(tag),tags,indexOf(fList[i]),value));
+                                                             $log.log($scope.links);
+                                                        }
+                                                    }
+                                                } //                        
+                                            }
+                                        });
+                                $log.log(($scope.links));
+                                        return angular.toJson($scope.links);                  
+                            }
+                    
+                    }
+                }
 
-            });
+        }]);
     
     app.directive('donutChart', function(){
       function link(scope, el, attr){
