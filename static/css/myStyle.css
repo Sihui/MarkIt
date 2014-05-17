@@ -23,12 +23,7 @@ input {
   margin: 10px 5px 20px 5px;
   background-color: #ffffff;
   border: 1px solid #d8d8d8;
-<<<<<<< HEAD
   float:left;
-=======
-   float:left;
-  /*border-top-width: 0;*/
->>>>>>> 2157b220912332ad18c4f75ee00ddac1c2e524fc
   border-bottom-width: 2px;
   -webkit-border-radius: 3px;
      -moz-border-radius: 3px;
@@ -301,5 +296,6 @@ tagSection {
 .tag {
     margin-right: 5px;
     margin-left: 5px;
-     background-color: #EFEFEF;
+    background-color: #EFEFEF;
+    background-color: #EFEFEF;
 }
