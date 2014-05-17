@@ -27,23 +27,10 @@
                     angular.forEach($scope.urls, function(url){
                         if(url.Tags!=0){
                             url.Tags = url.Tags.join(',').split(',');
-                            //$log.log("Finished to Array");
-                            /*angular.forEach(url.Tags, function(urlTag){
-                                //$log.log("coloring");
-                               // $log.log(typeof(urlTag));
-                                urlTag.tagColor="#000000";
-                                //$log.log(urlTag.tagColor);
-                                $scope.tags.forEach(function(tag){
-                                            if(tag.Tag==urlTag) 
-                                                urlTag.tagColor=tag.Color;
-                                                 $log.log("after");
-                                                 $log.log(typeof(tag.Color));
-                                            });
-                                        })*/
                                     }
                             if(url.Colors!=null&&url.Colors!=0){
                                 url.Colors = url.Colors.join(',').split(',');
-                                $log.log(url.Colors);
+                                //$log.log(url.Colors);
                                         }
                                 })
                         })

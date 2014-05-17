@@ -15,8 +15,6 @@ db.url.Title.requires=IS_NOT_EMPTY()
 db.url.Owner.readable = db.url.Owner.writable = False
 db.url.Modified.readable = db.url.Modified.writable = False
 db.url.Visited.readable = db.url.Visited.writable = False
-#db.url.URL.requires=[IS_URL(error_message='URL Error'),
-#                     IS_NOT_IN_DB(db, 'url.URL',error_message='Dupilcated URL')]
 
 db.url.URL.requires = [lambda url: (re.sub(r'http[s]?://', '', url), None),
                        IS_URL(prepend_scheme=None,error_message='URL Error'),

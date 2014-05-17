@@ -40,12 +40,13 @@ def new():
             if len(db(db.tag.Tag==tag).select()) is not 0:
                 tagRecord = db(db.tag.Tag==tag).select()[0]
                 tagRecord.URLs.append(record)
-                print "list start"
-                print tagRecord.URLs
-                print "end"
                 tagRecord.update_record(URLs=tagRecord.URLs)
                 tagRecord.update_record(Size=1 if tagRecord.Size is None else (tagRecord.Size+1))
-        response.flash = 'New Url Creared!'
+                friendsList = [x for x in tagList if x != tag]
+                friendsList = friendsList+tagRecord.Friends if tagRecord.Friends is not None else friendsList
+                tagRecord.update_record(Friends=friendsList)
+                print friendsList
+        response.flash = 'Marked!'
     return locals()
 
 def view():

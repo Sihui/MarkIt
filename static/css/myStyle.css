@@ -20,10 +20,10 @@ input {
 .card {
   width:300px;
   padding-top: 0px;
-  margin: 10px 0 20px 0;
+  margin: 10px 5px 20px 5px;
   background-color: #ffffff;
   border: 1px solid #d8d8d8;
-  /*border-top-width: 0;*/
+  float:left;
   border-bottom-width: 2px;
   -webkit-border-radius: 3px;
      -moz-border-radius: 3px;

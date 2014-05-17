@@ -38,12 +38,32 @@
                 template:'<div class="card">'+'<div class="card-heading simple">'+'<a href="//{{url.URL}}" target="_blank">{{url.Title}}</a></div>'+'<div class="card-body"><p>{{url.Note}}</p></div>'+'<div class="card-actions">'+'<tagSection ng-repeat="(i,tag) in url.Tags"  class="tag"  ng-style="set_color(url.Colors[i])">{{tag}}</tagSection>'+'</div></div>',
                 link: function ( $scope, $element ) {
                      $scope.set_color = function (c) {
-                         //style="background-color: \'#EFEFEF\'"
                             return { color: c}
                     }
                 }
             };
         });
+    app.directive('directedforcedGraph',function(){
+            function getLinks(scope,element,attr,filter,log){
+                    scope.links = [];
+                    angular.forEach(tags, function(tag,index){
+                        if(tag.Friends!=0){
+                            //convert the json list into javascript array
+                            tag.Friends = tag.Friends.join(',').split(',');
+                            var fList = $filter('orderBy')(tag.Friends, string);
+                            log.log('fList');
+                            log.log(fList);
+                            }
+                        })
+                }
+            return {
+                restrict: 'E',
+                scope: { tags: '='},
+                template:'<p>P</p>',
+                link: getLinks
+            };
+
+            });
     
     app.directive('donutChart', function(){
       function link(scope, el, attr){
