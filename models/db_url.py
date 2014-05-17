@@ -9,6 +9,7 @@ db.define_table('url',
                 Field('Note','text',default=""),
                 Field('Private','boolean',notnull=True,default=False),
                 Field('Tags','list:string'),
+                Field('Colors','list:string'),
                 format='%(URL)s')
 db.url.Title.requires=IS_NOT_EMPTY()
 db.url.Owner.readable = db.url.Owner.writable = False

@@ -1,0 +1,20 @@
+<?extend 'ng-layout.html'?>
+ <script src="<?=URL('static','ng-controllers/view-controller.js')?>"></script>
+<!--<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+
+  <donut-chart data="[8, 3, 7]"></donut-chart>
+  <donut-chart data="[2, 5, 9]"></donut-chart>
+  <donut-chart data="[6, 2, 3]"></donut-chart>
+<k><zoomable-bubble></zoomable-bubble></k>-->
+<div ng-controller="viewController ">
+    <button ng-click="getTagsList(CS)">Test Button</button>
+    
+    <span ng-repeat="url in urls ">
+       
+    <url-card url="url"></url-card></span>
+   
+    <span ng-repeat="url in urls "><p>{{}}</p><p>-----------</p></span>
+</div>    
+
+

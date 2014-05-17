@@ -8,7 +8,7 @@
 ## - download is for downloading files uploaded in the db (does streaming)
 ## - call exposes all registered services (none by default)
 #########################################################################
-
+import json
 
 def index():
     """
@@ -21,20 +21,17 @@ def index():
     #db.url_folder.insert(url=1, folder= 1)
     response.flash = T("Welcome to web2py!")
     return dict(message=T('Hello World'))
-def afterVal(form):
-    print "after"
-    print form.vars.id
-    
+
 def new():
     response.delimiters = ('<?','?>')
     url_form=SQLFORM(db.url).process()
     tag_form=SQLFORM(db.tag).process()
     urlTag_form=SQLFORM(db.url_tag).process()
+    
+    #after submit a new url form, update relative tag records
     if url_form.accepted:
-        #print 'record inserted'
         record = db.url(url_form.vars.id)
         url = record.URL
-        #print url
         #convert the list to string then split it to list
         tagList = ''.join(record.Tags).split(',')
         
@@ -48,13 +45,15 @@ def new():
                 print "end"
                 tagRecord.update_record(URLs=tagRecord.URLs)
                 tagRecord.update_record(Size=1 if tagRecord.Size is None else (tagRecord.Size+1))
-            #print newURLs
-        #print url.Tags[0]
-        response.flash = 'form accepted'
-    else:
-        response.flash =  'e'
-        print urlTag_form.vars.id
+        response.flash = 'New Url Creared!'
     return locals()
+
+def view():
+    response.delimiters = ('<?','?>')
+    
+    #response.files.append(URL('static', 'd3/d3.js'))
+    return locals()
+    
 
 def user():
     """
