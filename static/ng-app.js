@@ -90,10 +90,9 @@
             return {
                 restrict: 'E',
                 scope: { tags: '='},
-                template:'<p ng-style="getLinks(tags)"></p>',
+                template:'<p>{{getLinks(tags)}}</p>',
                 link: function ( $scope, $element){
-                             function createLink (s,t,v){
-                                $log.log("cl");
+                            function createLink (s,t,v){
                                                     return {source: s,
                                                             target: t,
                                                              value:v};
@@ -107,8 +106,11 @@
                                                 tag.Friends = tag.Friends.join(',').split(',');
                                                 //$log.log(tag.Friends);
                                                 var fList = tag.Friends.sort();
+                                                //get a list of tag name
+                                                var fNameList = [];
+                                                angular.forEach(tags, function(tag){fNameList.push(tag.Tag)});
                                                 $log.log(tag.Friends);
-                                                if(fList.length==1){//
+                                                if(fList.length==1){
                                                     $scope.links.push(createLink(tags.indexOf(tag),tags.indexOf(fList[0]),1));
                                                 }else{  
                                                     for(var i=0;i<fList.length-2;i++){
@@ -122,25 +124,29 @@
                                                             //determine last element
                                                             if(fList[i]==fList[i+1]){
                                                             value++;
-                                                                $log.log("push 1");
-                                                            $scope.links.push(createLink(tags.indexOf(tag),tags.indexOf(fList[i]),value));    
+//                                                                $log.log("push 1");
+                                                            $scope.links.push(createLink(tags.indexOf(tag),fNameList.indexOf(fList[i]),value)); 
                                                             }else{
-                                                                $log.log("push 2");
-                                                            $scope.links.push(createLink(tags.indexOf(tag),tags.indexOf(fList[i]),value));  
-                                                            $scope.links.push(createLink(tags.indexOf(tag),tags.indexOf(fList[i+1]),1));
+  //                                                              $log.log("push 2");
+                                                            $scope.links.push(createLink(tags.indexOf(tag),fNameList.indexOf(fList[i]),value)); 
+                                                            $scope.links.push(createLink(tags.indexOf(tag),fNameList.indexOf(fList[i+1]),1)); 
                                                             }
                                                         }
                                                         //current element isn't the second last one
                                                         else{
-                                                            $log.log("push 3");
-                                                            $scope.links.push(createLink(tags.indexOf(tag),tags,indexOf(fList[i]),value));
-                                                             $log.log($scope.links);
+                                                       //     $log.log("push 3");
+                                                            $scope.links.push(createLink(tags.indexOf(tag),fNameList.indexOf(fList[i]),value)); 
+                                                            /* $log.log("START");
+                                                             $log.log(tags);
+                                                             $log.log(fList[i]);
+                                                             $log.log(fNameList.indexOf(fList[i]));
+                                                             $log.log("end");*/
                                                         }
                                                     }
-                                                } //                        
+                                                }                  
                                             }
                                         });
-                                $log.log(($scope.links));
+                                $log.log(angular.toJson($scope.links));
                                         return angular.toJson($scope.links);                  
                             }
                     
