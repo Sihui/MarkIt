@@ -115,28 +115,30 @@
                                //$log.log("FDG-2");
                                 var force = d3.layout.force()
                                     .charge(-120)
-                                    .linkDistance(30)
+                                    .linkDistance(60)
                                     .size([width, height])
                                     .nodes(tags)
                                     .links(links)
                                     .start();
-                               //for some reasone this directive load multipule times 
-                               //(twice for urlFactory, twice for tagFactory, and twice for the page/driective itself)
-                               //so I have to remove previouse svg before appending a new one
+                               var w = window,
+                                    d = document,
+                                    e = d.documentElement,
+                                    g = d.getElementsByTagName('body')[0],
+                                    x = w.innerWidth || e.clientWidth || g.clientWidth,
+                                    y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+                               /* for some reasone this directive load multipule times 
+                                  (twice for urlFactory, twice for tagFactory, and twice for the page/driective itself)
+                                  so I have to remove previouse svg before appending a new one*/
                                d3.select("svg") .remove();
                                 var svg = d3.select($element[0]).append("svg")
-                               //  .attr("viewBox", "0 0 " + width+ " " + height );
-          //  .attr("preserveAspectRatio", "xMidYMid meet");
-                                            .attr("width", width)
-                                            .attr("height", height);
-                              // var vis = d3.select("$element[0]")//.append("svg:svg")
-                               //.attr("viewBox", "0 0 " + width+ " " + height )
-                               //.attr("preserveAspectRatio", "xMinYMin")
+                                            .attr("width", x)
+                                            .attr("height", y)
                                 var link = svg.selectAll(".link")
                                               .data(links)
                                             .enter().append("line")
                                               .attr("class", "link")
                                               .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+                              
                                var node = svg.selectAll(".node")
                                               .data(tags)
                                             .enter().append("circle")
@@ -145,7 +147,41 @@
                                               .style("fill", function(d) { return d.Color; })
                                               .call(force.drag);
                                 node.append("title")
-                                    .text(function(d) { return d.Tag });
+                                    .text(function(d) { return d.Tag });/*
+                                 var node = svg.append("g").selectAll(".node")
+                                                  .data(tags)
+                                                .enter().append("circle")
+                                                  .attr("r", 6)
+                                                  .call(force.drag);
+                               var text = svg.append("g").selectAll("g")
+                                                  .data(nodes)
+                                                .enter().append("g");
+
+                                              text.append("text")
+                                                  .attr("x", 8)
+                                                  .attr("y", ".31em")
+                                                  .attr("class", "shadow")
+                                                  .text(function(d) { return d.Tag; });
+
+                                              text.append("text")
+                                                  .attr("x", 8)
+                                                  .attr("y", ".31em")
+                                                  .text(function(d) { return d.Tag; });*/
+                               /* var g = svg.selectAll("g.node")
+                                      .data(nodes)
+                                    .enter().append("svg:g")
+                                      .attr("class", "node")
+                                      .attr("transform", function(d) { return "translate(" + d.x + ","
+                                + d.y + ")"; })
+                                      .call(force.drag);
+
+                                  g.append("svg:circle")
+                                      .attr("r", 5);
+
+                                  g.append("svg:text")
+                                      .attr("x", 10)
+                                      .attr("dy", ".31em")
+                                      .text(function(d) { return d.name; });*/
                                                             
                                 force.on("tick", function() {
                                                     link.attr("x1", function(d) { return d.source.x; })
@@ -155,6 +191,13 @@
                                     node.attr("cx", function(d) { return d.x; })
                                         .attr("cy", function(d) { return d.y; });
                                     });
+                               function updateWindow(){
+    x = w.innerWidth || e.clientWidth || g.clientWidth;
+    y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+    
+    svg.attr("width", x).attr("height", y);
+}
+window.onresize = updateWindow;
                            // $log.log("END-DFG"); 
                            }
                     
