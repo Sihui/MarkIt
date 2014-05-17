@@ -299,3 +299,13 @@ tagSection {
     background-color: #EFEFEF;
     background-color: #EFEFEF;
 }
+
+.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.link {
+  stroke: #999;
+  stroke-opacity: .6;
+}
