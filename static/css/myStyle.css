@@ -20,9 +20,10 @@ input {
 .card {
   width:300px;
   padding-top: 0px;
-  margin: 10px 0 20px 0;
+  margin: 10px 5px 20px 5px;
   background-color: #ffffff;
   border: 1px solid #d8d8d8;
+   float:left;
   /*border-top-width: 0;*/
   border-bottom-width: 2px;
   -webkit-border-radius: 3px;
@@ -291,7 +292,8 @@ input {
 }
 tagSection {
     padding: 3px 3px 3px 3px;
-    display:inline;}
+    display:inline;
+}
 .tag {
     margin-right: 5px;
     margin-left: 5px;
