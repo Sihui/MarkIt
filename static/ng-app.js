@@ -1,5 +1,29 @@
 (function(){
     var app = angular.module('MarkIt',[]);
+    app.filter('selectedTagList', function() {
+                return function( urls, filterTags ) {
+                  console.log('selectedTagList',filterTags);
+                  if(filterTags.length==0) {console.log('filtered',urls);  return urls;}
+                  var filtered = [];
+                  angular.forEach(urls, function(url) {
+                      console.log('selectedTagList - url: ',url);
+                        angular.forEach(url.Tags, function(tag){
+                            console.log("Ctag",tag,"Tlist",filterTags); 
+                            console.log(filterTags.indexOf(tag)); 
+                            if(filterTags.indexOf(tag)!=-1){
+                            //this url has at least one of the filterTags
+                                if(filtered.indexOf(url)==-1){
+                                        
+                                    filtered.push(url);
+                                    console.log("pushed"); 
+                                }
+                            }
+                        });
+                  });
+                  console.log('filtered',filtered);                    
+                  return filtered;
+                };
+            });
     app.filter('selected', function() {
             return function (input) {
                 if(input.Selected)
@@ -14,7 +38,7 @@
                 template:'<div class="tags">' +
         '<span ng-repeat="(idx, tag) in tags " class="tag" ng-click="clickTag(tag)" ng-style="set_color(tag)">{{tag.Tag}}</span>' +'</div>' ,
                 link: function ( $scope, $element ) {           
-                    $log.log("tagM");
+                    
                     $scope.set_color = function (tag) {
                          
                         if(tag.Selected)
@@ -26,23 +50,27 @@
                     $scope.clickTag = function(tag){
                             tag.Selected=!tag.Selected;
                             //getSelectedTags
+                        $log.log("click");
+                       // $log.log(angular.element(document.getElementById("tags")).scope());
                         angular.element(document.getElementById("tags")).scope().getSelectedTags(tag);
+                        $log.log("clickEND");
                     };
                 }
             };
         }]); 
-       app.directive('urlCard', function() {
+       app.directive('urlCard', ['$log',function($log) {
             return {
                 restrict: 'E',
                 scope: { url: '='},
-                template:'<div class="card">'+'<div class="card-heading simple">'+'<a href="//{{url.URL}}" target="_blank">{{url.Title}}</a></div>'+'<div class="card-body"><p>{{url.Note}}</p></div>'+'<div class="card-actions">'+'<tagSection ng-repeat="(i,tag) in url.Tags"  class="tag"  ng-style="set_color(url.Colors[i])"><span>{{tag}}</span></tagSection>'+'</div></div>',
+                template:'<div class="card">'+'<div class="card-heading simple">'+'<a href="//{{url.URL}}" target="_blank">{{url.Title}}</a></div>'+'<div class="card-body"><p>{{url.Note}}</p></div>'+'<div class="card-actions">'+'<tagSection ng-repeat="(i,tag) in url.Tags"  class="tag"  ng-style="set_color(url.Colors[i])"><span>{{tag}}</span></tagSection>'+'</div></div>'+'<p>{{}}</p>',
                 link: function ( $scope, $element ) {
+                    console.log("urlCard");
                      $scope.set_color = function (c) {
                             return { color: c}
                     }
                 }
             };
-        });
+        }]);
     app.directive('forcedirectedGraph',['$filter','$log',function($filter,$log){
             return {
                 restrict: 'E',

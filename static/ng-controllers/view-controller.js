@@ -7,14 +7,12 @@
         $scope.tags = [];
         $scope.selectedTags = [];
         $scope.selectedTagsTags = [];
-        
+         $scope.filterTags = [];
         function init() {
              tagFactory.getTags()
                 .success(function(data, status, headers, config) {
                     $scope.tags = data;
-                    $log.log('tagFactorySuccess');
-                    //$log.log('dfghjk');
-                    
+                    $log.log('tagFactorySuccess');                    
                 })
                 .error(function(data, status, headers, config) {
                     $log.log(data.error + ' ' + status);
@@ -41,6 +39,23 @@
         }
         
         init();
+            $scope.getSelectedTags = function(inputTag){
+            $log.log('getSelectedTagsList');
+            if(inputTag.Selected){
+                //add it
+                 $log.log('add tag');
+               
+                $scope.filterTags.push(inputTag.Tag);
+            }else{
+                //remove it
+                $log.log('try to remove tag');
+                var index = $scope.filterTags.indexOf(inputTag.Tag);
+                if ( index > -1) {
+                     $scope.filterTags.splice(index, 1);
+                    $log.log('remove tag');
+                }
+            }
+        };
         $scope.tlist = function(input){ $window.alert('hello '); return input.join(',').split(',');};
         $scope.getTagsList = function(ulr){
             $log.log("c function");

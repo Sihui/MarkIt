@@ -2,10 +2,12 @@
 <script src="<?=URL('static','ng-controllers/view-controller.js')?>"></script>
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 
-<div ng-controller="viewController ">
+<div id="tags" ng-controller="viewController ">
     Search:  <input type="text" ng-model="urlFilter" />
+    <tag-manager  tags="tags"></tag-manager>
     <gr><forcedirected-graph tags="tags" style="overflow: hidden;"></forcedirected-graph></gr>
-    <span ng-repeat="url in urls | filter:urlFilter"><url-card url="url"></url-card></span>   
+    <!--<span ng-repeat="url in urls | filter:urlFilter|selectedTagList:filterTags"><url-card url="url"></url-card></span> -->  
+    <url-card  ng-repeat="url in urls | filter:urlFilter|selectedTagList:filterTags" url="url"></url-card>
 </div>    
 
 
