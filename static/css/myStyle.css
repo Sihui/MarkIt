@@ -107,6 +107,7 @@ input {
   margin-bottom: 0px;
   margin-left: 10px;
   margin-right: 10px;
+    overflow: hidden;
 }
 
 .card .card-comments {
@@ -135,7 +136,7 @@ input {
   font-weight: bold;
 }
 
-.card.people {
+/*.card.people {
   position: relative;
   display: inline-block;
   width: 170px;
@@ -144,7 +145,7 @@ input {
   margin-left: 20px;
   overflow: hidden;
   vertical-align: top;
-}
+}*/
 
 .card.people:first-child {
   margin-left: 0;
@@ -296,11 +297,14 @@ tagSection {
 .tag {
     margin-right: 5px;
     margin-left: 5px;
-    background-color: #EFEFEF;
-    background-color: #EFEFEF;
+    margin-bottom: 2px;
+    border: 1.5px solid #2E2EB8;
+    /* background-color: #EFEFEF; */
+    background-color: #FFFAF3;float:left;
+    overflow-wrap: break-word
 }
 
-.node {
+/*.node {
   stroke: #fff;
   stroke-width: 1.5px;
 }
@@ -308,4 +312,24 @@ tagSection {
 .link {
   stroke: #999;
   stroke-opacity: .6;
+}
+text {
+  font: 10px sans-serif;
+  pointer-events: none;
+}*/
+.link {
+  fill: none;
+  stroke: #666;
+  stroke-width: 1.5px;
+}
+
+.node circle {
+  fill: #ccc;
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+text {
+  font: 10px sans-serif;
+  pointer-events: none;
 }
