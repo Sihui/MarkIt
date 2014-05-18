@@ -19,7 +19,7 @@
 <?=tag_form.custom.end?>   
 </div>  
 </div>
-<a data-toggle="modal" href="#example" class="btn btn-primary btn-small">New Tag</a>
+
 </div>
 <script src="<?=URL('static','js/bootstrap-modal.js')?>"></script>
 <script type="text/javascript" src="<?=URL('static','jscolor/jscolor.js')?>"></script>
@@ -27,7 +27,7 @@
 
 <div id="tags" ng-controller="newController">
 
-<tag-manager tags="tags"></tag-manager>
+
     <!--<h3>Selected Tags</h3>    
     <ul ng-repeat="tag in tags">
         {{tag|selected}}
@@ -36,23 +36,29 @@
     <ul>
     <li ng-repeat="t in selectedTags">{{t}}</li>    
     </ul>-->
-    
-
-<br />
-<br />
-<br/>
-<?=url_form.custom.begin?>
-<table>
-<strong>Add URL</strong>&nbsp;&nbsp;Set to Private<? =url_form.custom.widget.Private ?><br/>
-<br/><strong>URL:</strong><? =url_form.custom.widget.URL ?><br/>
-<strong>Title:</strong><? =url_form.custom.widget.Title ?><br/>
-<strong>Note:</strong><? =url_form.custom.widget.Note ?><br/>
-<button ng-click="clickSubmitBtn()">Submit</button>    
-<div style="Visibility:hidden"><? =url_form.custom.widget.Tags ?></div>
-<div style="Visibility:hidden"><? =url_form.custom.widget.Colors ?></div>
-<button id="urlSubmitBtn" style="Visibility:hidden"><?=url_form.custom.submit?></button>
-</table>
-<?=url_form.custom.end?> 
+<?=url_form.custom.begin?>    
+<div class="card" style="width:400px;">
+    <!---->
+    <div class="card-heading simple" style="position: relative;height: 60px;"><strong style="font-size:200%;position: absolute;top: 10px;
+    left: 5px;">Mark an URL</strong><div style="position: absolute;right: 5px; bottom: 5px;"><tr >Private<? =url_form.custom.widget.Private ?></tr><tr><br/><a data-toggle="modal" href="#example" class="btn btn-primary btn-small" >New Tag</a></tr></div> </div>
+    <div class="card-heading" ></div>
+    <div class="card-body" >
+    <table>
+     <tr><tag-manager tags="tags"></tag-manager></tr>
+     <tr><td><strong>Title:</strong></td><td><? =url_form.custom.widget.Title ?></td></tr>   
+     <tr><td><strong>URL:</strong></td><td><? =url_form.custom.widget.URL ?></td></tr>   
+     <tr><td><strong>Note:</strong></td><td><textarea class="text" cols="40" id="url_Note" name="Note" rows="10" style="width:94%;"></textarea></td></tr>     
+    </table>       
+    </div>
+    <div class="card-actions" style="position: relative;height: 40px;">
+    <button ng-click="clickSubmitBtn()" style="position: absolute;bottom: 5px;
+    right: 5px;">Submit</button>
+    </div>    
+</div>  
+    <div style="Visibility:hidden"><? =url_form.custom.widget.Tags ?></div>
+    <div style="Visibility:hidden"><? =url_form.custom.widget.Colors ?></div>   
+    <button id="urlSubmitBtn" style="Visibility:hidden"><?=url_form.custom.submit?></button>
+<?=url_form.custom.end?>
 </div>
 
 <div style="Visibility:hidden">

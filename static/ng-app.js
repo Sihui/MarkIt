@@ -83,8 +83,9 @@
                                                             value:v};
                                                 };
                             $scope.fdg = function(){
-                                $log.log("in function");
+                                $log.log("fdg 1");
                                 $scope.getLinks();
+                                $log.log("fdg 2");
                                 ForceDirectedGraph($scope.tags,$scope.links);
                             }
                             $scope.getLinks = function(){
@@ -100,7 +101,11 @@
                                                 var fNameList = [];
                                                 angular.forEach(tags, function(tag){fNameList.push(tag.Tag)});
                                                 if(fList.length==1){
-                                                    $scope.links.push(createLink(tags.indexOf(tag),tags.indexOf(fList[0]),1));
+                                                   var c=createLink(tags.indexOf(tag),fNameList.indexOf(fList[0]),1);  
+                                                    if(c.source>-1&&c.target>-1)
+                                                            $scope.links.push(createLink(c.source,c.target,c.value)); 
+                                                    $log.log("------1------");
+                                                    $log.log(c);
                                                 }else{  
                                                     for(var i=0;i<fList.length-2;i++){
                                                         var value=1;
@@ -113,15 +118,39 @@
                                                             //determine last element
                                                             if(fList[i]==fList[i+1]){
                                                             value++;
-                                                            $scope.links.push(createLink(tags.indexOf(tag),fNameList.indexOf(fList[i]),value)); 
+                                                            var c=createLink(tags.indexOf(tag),fNameList.indexOf(fList[i]),value);  
+                                                            if(c.source>-1&&c.target>-1)
+                                                            $scope.links.push(createLink(c.source,c.target,c.value)); 
+                                                                $log.log("------2------");
+                                                    $log.log(c);
                                                             }else{
-                                                            $scope.links.push(createLink(tags.indexOf(tag),fNameList.indexOf(fList[i]),value)); 
-                                                            $scope.links.push(createLink(tags.indexOf(tag),fNameList.indexOf(fList[i+1]),1)); 
+                                                                $log.log("push"); 
+                                                                $log.log(createLink(tags.indexOf(tag),fNameList.indexOf(fList[i]),value)); 
+                                                                var c=createLink(tags.indexOf(tag),fNameList.indexOf(fList[i]),value);  
+                                                           if(c.source>-1&&c.target>-1)
+                                                            $scope.links.push(createLink(c.source,c.target,c.value)); 
+                                                                $log.log("------3------");
+                                                    $log.log(c);
+                                                                var c=createLink(tags.indexOf(tag),fNameList.indexOf(fList[i+1]),1);  
+                                                            if(c.source>-1&&c.target>-1)
+                                                            $scope.links.push(createLink(c.source,c.target,c.value)); 
+                                                                $log.log("------4------");
+                                                    $log.log(c);
                                                             }
                                                         }
                                                         //current element isn't the second last one
                                                         else{
-                                                            $scope.links.push(createLink(tags.indexOf(tag),fNameList.indexOf(fList[i]),value)); 
+                                                            $log.log("push");                                                      
+                                                            var c=null;
+                                                            c=createLink(tags.indexOf(tag),fNameList.indexOf(fList[i]),value);  
+                                                            if(c.source>-1&&c.target>-1)
+                                                            $scope.links.push(createLink(c.source,c.target,c.value)); 
+                                                            $log.log("------5-----");
+                                                            $log.log(c);
+                                                            $log.log(c.source);
+                                                            $log.log(c.target);
+                                                            $log.log(typeof(c.source));
+                                                            $log.log(typeof(c.target));
                                                         }
                                                     }
                                                 }                  
@@ -129,27 +158,25 @@
                                         });
                                         //$scope.JSONLinks = angular.toJson($scope.links); 
                                         //$scope.JSONTags = angular.toJson(tags); 
+                                $log.log("end clink");   
+                                $log.log($scope.links);   
+                                $log.log($scope.tags);   
                                                                                                   
                             }
                            function ForceDirectedGraph(tags,links){
-                                d3.select("svg") .remove();
+                               $log.log("fdg 3");
+                                d3.select("svg").remove();
                                 var svg = d3.select($element[0]).append("svg");
                                 var force = d3.layout.force();
-                                          force
-                                              .nodes(tags)
-                                              .links(links)
-                                          .charge(-120)
-                                          .linkDistance(60)
-                                          
-                                              .on("tick", tick)
-                                              .start();
-
-                                          var link = svg.selectAll(".link")
+                               $log.log("fdg 4");
+                               $log.log(tags);
+                               $log.log(links);
+                               var link = svg.selectAll(".link")
                                               .data(links)
                                             .enter().append("line")
                                               .attr("class", "link")
                                           .style("stroke-width", function(d) { return Math.sqrt(d.value); });
-                               var node = svg.selectAll(".node")
+                              var node = svg.selectAll(".node")
                                                 .data(tags)
                                               .enter().append("g")
                                                 .attr("class", "node")
@@ -163,6 +190,18 @@
                                                 .attr("x", 12)
                                                 .attr("dy", ".35em")
                                                 .text(function(d) { return d.Tag; });
+                                $log.log("fdg 5");
+                                          force
+                                          .nodes(tags)
+                                          .links(links)
+                                          .linkDistance(60)
+                                          .charge(-120)
+                                          .on("tick", tick)
+                                          .start();
+                              
+                             $log.log("fdg 6");
+                                          
+
 
                                           resize();
                                           d3.select(window).on("resize", resize);
@@ -176,12 +215,13 @@
                                             node.attr("cx", function(d) { return d.x; })
                                               .attr("cy", function(d) { return d.y; });
                                               node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+                                              
                                           }
 
                                           function resize() {
                                             width = window.innerWidth, height = window.innerHeight;
-                                            svg.attr("width", width).attr("height", height/3);
-                                            force.size([width, height/3]).resume();
+                                            svg.attr("width", width).attr("height", height/2.5);
+                                            force.size([width, height/2.5]).resume();
                                           }
                                 }                
                             }
