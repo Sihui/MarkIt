@@ -119,7 +119,8 @@
                                           var link = svg.selectAll(".link")
                                               .data(links)
                                             .enter().append("line")
-                                              .attr("class", "link");
+                                              .attr("class", "link")
+                                          .style("stroke-width", function(d) { return Math.sqrt(d.value); });
                                var node = svg.selectAll(".node")
                                                 .data(tags)
                                               .enter().append("g")
@@ -128,7 +129,7 @@
 
                                             node.append("circle")
                                             .style("fill", function(d) { return d.Color; })
-                                                .attr("r", 8);
+                                                .attr("r", 10);
 
                                             node.append("text")
                                                 .attr("x", 12)

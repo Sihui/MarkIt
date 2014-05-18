@@ -303,24 +303,10 @@ tagSection {
     background-color: #FFFAF3;float:left;
     overflow-wrap: break-word
 }
-
-/*.node {
-  stroke: #fff;
-  stroke-width: 1.5px;
-}
-
-.link {
-  stroke: #999;
-  stroke-opacity: .6;
-}
-text {
-  font: 10px sans-serif;
-  pointer-events: none;
-}*/
 .link {
   fill: none;
-  stroke: #666;
-  stroke-width: 1.5px;
+  stroke: #999;
+  stroke-opacity: .6;
 }
 
 .node circle {
@@ -330,6 +316,6 @@ text {
 }
 
 text {
-  font: 10px sans-serif;
+  font: 12px sans-serif;
   pointer-events: none;
 }
