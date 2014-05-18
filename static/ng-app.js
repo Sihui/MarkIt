@@ -219,8 +219,11 @@
                                           }
 
                                           function resize() {
-                                            width = window.innerWidth, height = window.innerHeight;
-                                            svg.attr("width", width).attr("height", height/2.5);
+                                            width = window.innerWidth;
+                                            //width=  d3.select($element[0]).width;
+                                              height = window.innerHeight;
+                                            svg.attr("width", width)//.attr("max-width",100%)
+                                            .attr("height", height/2.5);
                                             force.size([width, height/2.5]).resume();
                                           }
                                 }                
