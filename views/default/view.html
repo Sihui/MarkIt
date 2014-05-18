@@ -7,8 +7,9 @@ svg{
 max-width:1000px;
 }
 </style>
-<div id="tags" ng-controller="viewController ">
-    Search:  <input type="text" ng-model="urlFilter" />
+<div id="tags" ng-controller="viewController " style="
+margin-top: 70px;">
+    <strong style="front-size:120%;">Search:</strong><input type="text" ng-model="urlFilter" />
     <tag-manager  tags="tags"></tag-manager>
     <forcedirected-graph tags="tags" ></forcedirected-graph>
     <!--<span ng-repeat="url in urls | filter:urlFilter|selectedTagList:filterTags"><url-card url="url"></url-card></span> -->  

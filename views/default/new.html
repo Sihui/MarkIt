@@ -1,5 +1,31 @@
 <?extend 'ng-layout.html'?>
 
+<div id="tags" ng-controller="newController" style="margin-top:0px">
+
+<?=url_form.custom.begin?>    
+<div class="card" style="width:400px;margin: 0 auto; margin-left:30%;margin-bottom:0px; margin-top:20px;">
+    <!---->
+    <div class="card-heading simple" style="position: relative;height: 60px;"><strong style="line-height:80%;font-size:200%;position: absolute;top: 10px;
+    left: 5px;">New Mark</strong><div style="position: absolute;right: 5px; bottom: 5px;font-size: 75%;"><tr>Private<? =url_form.custom.widget.Private ?></tr><tr><br/><a data-toggle="modal" href="#example" class="btn btn-primary btn-small" >New Tag</a></tr></div> </div>
+    <div class="card-heading" ></div>
+    <div class="card-body" >
+    <table>
+     <tr><tag-manager tags="tags"></tag-manager></tr>
+     <tr><td><strong>Title:</strong></td><td><? =url_form.custom.widget.Title ?></td></tr>   
+     <tr><td><strong>URL:</strong></td><td><? =url_form.custom.widget.URL ?></td></tr>   
+     <tr><td><strong>Note:</strong></td><td><textarea class="text" cols="40" id="url_Note" name="Note" rows="10" style="width:94%;"></textarea></td></tr>     
+    </table>       
+    </div>
+    <div class="card-actions" style="position: relative;height: 40px;">
+    <button ng-click="clickSubmitBtn()" style="position: absolute;bottom: 5px;
+    right: 5px;">Submit</button>
+    </div>    
+</div>  
+    <div style="Visibility:hidden"><? =url_form.custom.widget.Tags ?></div>
+    <div style="Visibility:hidden"><? =url_form.custom.widget.Colors ?></div>   
+    <button id="urlSubmitBtn" style="Visibility:hidden"><?=url_form.custom.submit?></button>
+<?=url_form.custom.end?>
+</div>
 <!--Bootstrap Modal Popup-->
 <div class="container">  
 <div id="example" class="modal hide fade in" style="display: none; ">  
@@ -24,47 +50,3 @@
 <script src="<?=URL('static','js/bootstrap-modal.js')?>"></script>
 <script type="text/javascript" src="<?=URL('static','jscolor/jscolor.js')?>"></script>
 <!--End of Bootstrap Modal Popup-->
-
-<div id="tags" ng-controller="newController">
-
-
-    <!--<h3>Selected Tags</h3>    
-    <ul ng-repeat="tag in tags">
-        {{tag|selected}}
-    </ul> 
-    <h3>Sotred Tags</h3>
-    <ul>
-    <li ng-repeat="t in selectedTags">{{t}}</li>    
-    </ul>-->
-<?=url_form.custom.begin?>    
-<div class="card" style="width:400px;">
-    <!---->
-    <div class="card-heading simple" style="position: relative;height: 60px;"><strong style="font-size:200%;position: absolute;top: 10px;
-    left: 5px;">New Mark</strong><div style="position: absolute;right: 5px; bottom: 5px;"><tr >Private<? =url_form.custom.widget.Private ?></tr><tr><br/><a data-toggle="modal" href="#example" class="btn btn-primary btn-small" >New Tag</a></tr></div> </div>
-    <div class="card-heading" ></div>
-    <div class="card-body" >
-    <table>
-     <tr><tag-manager tags="tags"></tag-manager></tr>
-     <tr><td><strong>Title:</strong></td><td><? =url_form.custom.widget.Title ?></td></tr>   
-     <tr><td><strong>URL:</strong></td><td><? =url_form.custom.widget.URL ?></td></tr>   
-     <tr><td><strong>Note:</strong></td><td><textarea class="text" cols="40" id="url_Note" name="Note" rows="10" style="width:94%;"></textarea></td></tr>     
-    </table>       
-    </div>
-    <div class="card-actions" style="position: relative;height: 40px;">
-    <button ng-click="clickSubmitBtn()" style="position: absolute;bottom: 5px;
-    right: 5px;">Submit</button>
-    </div>    
-</div>  
-    <div style="Visibility:hidden"><? =url_form.custom.widget.Tags ?></div>
-    <div style="Visibility:hidden"><? =url_form.custom.widget.Colors ?></div>   
-    <button id="urlSubmitBtn" style="Visibility:hidden"><?=url_form.custom.submit?></button>
-<?=url_form.custom.end?>
-</div>
-
-<div style="Visibility:hidden">
-    <?=urlTag_form.custom.begin?>   
-    <br/>URL:<?=urlTag_form.custom.widget.URL?>
-    <br/>Tag:<?=urlTag_form.custom.widget.Tag?>
-    <button id="url_tag_btn"><?=urlTag_form.custom.submit?></button>
-    <?=urlTag_form.custom.end?>
-</div>
