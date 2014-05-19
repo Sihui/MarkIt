@@ -64,7 +64,11 @@
   <noscript><link href="{{=URL('static', 'css/web2py_bootstrap_nojs.css')}}" rel="stylesheet" type="text/css" /></noscript>
   {{block head}}{{end}}
 </head>
-
+<style>
+.body{
+ background-image:url("<?=URL('static','paper.png')?>");
+}
+</style>
 <body>
   <!-- Navbar ================================================== -->
   <div class="navbar navbar-inverse">
@@ -91,7 +95,7 @@
 
   <div class="container">
     <!-- Masthead ================================================== -->
-    <header class="mastheader row" id="header">
+    <!--<header class="mastheader row" id="header">
       {{if response.title:}}
         <div class="span12">
             <div class="page-header">
@@ -102,7 +106,7 @@
             </div>
         </div>
 	{{pass}}
-    </header>
+    </header>-->
 
     <section id="main" class="main row">
         {{if left_sidebar_enabled:}}

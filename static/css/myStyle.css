@@ -320,3 +320,6 @@ text {
   pointer-events: none;
     
 }
+.icon-github{
+    background-image:url("../Logos-Github-icon.png")
+}

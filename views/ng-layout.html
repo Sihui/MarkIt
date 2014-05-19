@@ -91,6 +91,7 @@ background-image:url("<?=URL('static','paper.png')?>");
 <body>
   <!-- Navbar ================================================== -->
   <div class="navbar navbar-inverse">
+     <a href="https://github.com/Sihui"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
     <div class="flash"><?=response.flash or ''?></div>
     <div class="navbar-inner">
       <div class="container">
@@ -158,10 +159,12 @@ background-image:url("<?=URL('static','paper.png')?>");
         <footer class="footer span12" id="footer">
             <div class="footer-content">
                 <?block footer?> <!-- this is default footer -->
-                <div class="copyright pull-left"><?=T('Copyright')?> &#169; <?=request.now.year?></div>
+                <div class="copyright pull-left"><a href="https://github.com/Sihui/MarkIt" target="_blank">Open Source Project</a> by<a href="" target="_blank"> Sihui Huang</a></div>
                 <div id="poweredBy" class="pull-right">
                     <?=T('Powered by')?>
-                    <a href="http://www.web2py.com/">web2py</a>
+                    <a href="http://www.web2py.com/" target="_blank">web2py</a>, 
+                    <a href="https://angularjs.org" target="_blank">AngularJS</a>, and
+                    <a href="http://d3js.org" target="_blank">D3.js</a>
                 </div>
                 <?end?>
             </div>
